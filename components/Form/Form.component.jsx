@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputSimple, FormLabel } from '../../components';
+import { InputSimple, FormLabel, TextArea } from '../../components';
 
 function Form ({ data, service }) {
   const [formData, setFormData] = useState(setDefaultState);
@@ -13,11 +13,9 @@ function Form ({ data, service }) {
 
   function handleFormSubmit (e) {
     e.preventDefault();
-    // e.target.reset(); // Reset the form
   }
 
-  function onChange () {
-    console.log('test');
+  function onChange (e) {
   }
 
   function renderInput (input) {
@@ -25,6 +23,9 @@ function Form ({ data, service }) {
     if (isSimpleInput(input)) {
       return <InputSimple {...input} id={input.name} onChange={onChange} />;
     };
+    if (input.type === 'textarea') {
+      return <TextArea {...input} id={input.name} onChange={onChange} />;
+    }
 
   }
 
