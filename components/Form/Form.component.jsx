@@ -9,7 +9,7 @@ function Form ({ data, service }) {
 
   useEffect(() => {
     setIsFormValid(isValid(formData));
-  }, [formData]);
+  }, [formData, isFormValid]);
 
   function setDefaultState () {
     const state = {};
@@ -84,7 +84,11 @@ function Form ({ data, service }) {
           </fieldset>
 
           <div className="form__row form__footer">
-            <button className="button button--submit" type="submit">Submit Appointment Request</button>
+            <button 
+              className="button button--submit" 
+              type="submit"
+              disabled={!isFormValid}
+            >Submit Appointment Request</button>
           </div>
 
         </form>
