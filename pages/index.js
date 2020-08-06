@@ -21,12 +21,12 @@ function Index () {
 
   async function fetchData (url) {
     const response = await fetch(url);
-    if (! response.ok) fetchErrorHandler();
+    if (! response.ok) fetchErrorHandler(url);
 
     return await response.json();
   }
 
-  function fetchErrorHandler () {
+  function fetchErrorHandler (url) {
     setError(true);
     console.error(`Failed to fetch data ${url}`);
   }
