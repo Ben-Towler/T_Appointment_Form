@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputSimple } from '../../components';
+import { InputSimple, FormLabel } from '../../components';
 
 function Form ({ data, service }) {
   const [formData, setFormData] = useState(setDefaultState);
@@ -51,7 +51,7 @@ function Form ({ data, service }) {
           <fieldset>
             {data.fields ? data.fields.map((input) => (
               <div className="form__row" key={input.name}>
-                {/* <FormLabel htmlFor={formID+'_'+input.name}>{input.label}</FormLabel> */}
+                <FormLabel htmlFor={input.name}>{input.label}</FormLabel>
                 {renderInput(input)}
               </div>
             )): null}
