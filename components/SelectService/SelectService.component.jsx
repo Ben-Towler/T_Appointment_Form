@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 const API_BASE = 'https://clinia-coding-challenge.s3.ca-central-1.amazonaws.com/';
-import { FormLabel } from '../../components';
+import { FormLabel, InputSelect } from '../../components';
 
 function SelectService ({ onChange }) {
   const [services, setServices] = useState([]);
@@ -29,18 +29,12 @@ function SelectService ({ onChange }) {
     <div className="appointment appointment--type">
       <form className="form form--service">
         <FormLabel htmlFor="form_service">Choose a Service</FormLabel>
-        <select 
-          name='services'
-          className='form__select'
+        <InputSelect
+          name="services"
           id="form_service"
-          defaultValue='DEFAULT'
-          onChange={(e) => onChange(e, 'services')}
-        >
-          <option value='DEFAULT' disabled>Select a service</option>
-          {services.map( service => {
-            return <option key={service} value={service}>{service}</option>;
-          })}
-        </select>
+          options={services}
+          onChange={onChange}
+        />
       </form>
     </div>
   )
