@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 
 import "../styles.scss";
+import { SelectService } from '../components';
 
 export default class Index extends React.Component {
   render() {
@@ -11,7 +12,7 @@ export default class Index extends React.Component {
           <title>Appointment Form</title>
         </Head>
         <div style={{ textAlign: "center" }} className="example">
-          Hello World {this.props.userAgent}
+          <SelectService />
         </div>
       </div>
     );
