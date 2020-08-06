@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 const API_BASE = 'https://clinia-coding-challenge.s3.ca-central-1.amazonaws.com/';
+import { FormLabel } from '../../components';
 
 function SelectService ({ onChange }) {
   const [services, setServices] = useState([]);
@@ -25,11 +26,9 @@ function SelectService ({ onChange }) {
   }
 
   return (
-    <>
+    <div class="appointment appointment--type">
       <form className="form form--service">
-        <label className="form__label" htmlFor="form_service">
-          Choose a Service
-        </label>
+        <FormLabel htmlFor="form_service">Choose a Service</FormLabel>
         <select 
           name='services'
           className='form__select'
@@ -43,7 +42,7 @@ function SelectService ({ onChange }) {
           })}
         </select>
       </form>
-    </>
+    </div>
   )
 }
 

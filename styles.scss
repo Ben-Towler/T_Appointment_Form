@@ -1,4 +1,155 @@
-$font-size: 50px;
-.example {
-  font-size: $font-size;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Montserrat:wght@400;500&display=swap');
+
+$font-family-primary: 'Roboto Slab', serif;
+$font-family-secondary: 'Montserrat', sans-serif;
+
+$color-brand-primary: #e66157;
+$color-brand-secondary: #96bee6;
+$color-text: #282828;
+
+$color-error: #ff6b6b;
+$color-success: #86BD6F;
+
+$font-size-base: 16px;
+$font-size-small: 0.825rem;
+$font-size-large: 1.35rem;
+
+html, body {
+  height: 100%;
+  margin: 0;
+
+  font-family: $font-family-secondary;
+  line-height: 1.4;
+  color: $color-text;
+  font-size: $font-size-base;
+  background-color: #f4f4f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.appointment {
+  padding: 40px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 15px rgba(48,66,87,.08);
+
+  width: 500px;
+  max-width: 90%;
+  margin: 30px auto;
+}
+
+.appointment__header {
+  margin-bottom: 25px;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+.form__row {
+  display: block;
+
+  & + .form__row {
+    margin-top: 20px;
+  }
+}
+
+.form-status {
+  padding: 10px;
+  margin: 0 0 20px;
+  border-radius: 4px;
+  
+  text-align: center;
+  font-weight: 600;
+}
+
+.form-status__error {
+  background-color: rgba($color-error, 0.2);
+  color: $color-error;
+}
+
+.form-status__success {
+  background-color: rgba($color-success, 0.2);
+  color: $color-success;
+}
+
+.form-status__content {
+  font-size: 12px;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: $font-size-small;
+  font-weight: 600;
+}
+
+.form__input, .form__select, .form__textarea {
+  height: 44px;
+  width: 100%;
+  padding: 10px;
+
+  border: 1px solid rgba(61,81,84,.4);
+  background-color: white;
+  border-radius: 4px;
+
+  font-family: $font-family-secondary;
+  color: $color-text;
+
+  &:focus {
+    outline: 1px auto rgba(61,81,84,.55);
+  }
+
+  &.error {
+    border: 1px solid $color-error;
+  }
+}
+
+.form__textarea {
+  height: 80px;
+  resize: none;
+}
+
+.form__footer {
+  margin-top: 25px;
+}
+
+.button {
+  display: block;
+  padding: 12px 15px;
+
+  border-radius: 4px;
+  border: none;
+  font-weight: 600;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button--submit {
+  width: 100%;
+  background-color: $color-brand-primary;
+  color: #ffffff;
+  transition: 0.3s background-color ease;
+
+  &:hover {
+    background-color: darken($color-brand-primary, 7%);
+  }
+}
+
+.title {
+  font-family: $font-family-primary;
+  margin: 0;
+}
+
+.title--primary {
+  font-size: $font-size-large;
 }

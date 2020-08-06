@@ -24,6 +24,8 @@ function Form ({ data, service }) {
 
   function handleFormSubmit (e) {
     e.preventDefault();
+    console.log('Form Data', formData);
+    e.target.reset();
   }
 
   function onChange (e) {
