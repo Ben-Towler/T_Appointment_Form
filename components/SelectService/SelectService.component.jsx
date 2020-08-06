@@ -26,8 +26,8 @@ function SelectService ({ onChange }) {
 
   return (
     <>
-      <form class="form form--service">
-        <label class="form__label" htmlFor="form_service">
+      <form className="form form--service">
+        <label className="form__label" htmlFor="form_service">
           Choose a Service
         </label>
         <select 
