@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { InputSimple, FormLabel, TextArea } from '../../components';
+
+const UPDATE = 'UPDATE';
 
 function Form ({ data, service }) {
   const [formData, setFormData] = useState(setDefaultState);
+  const [isFormValid, setIsFormValid] = useState(false); 
+
+  useEffect(() => {
+    setIsFormValid(isValid(formData));
+  }, [formData]);
 
   function setDefaultState () {
     const state = {};
@@ -11,22 +18,40 @@ function Form ({ data, service }) {
     return state;
   }
 
+  function isValid (fields) {
+    return Object.keys(fields).every(key => fields[key].length);
+  }
+
   function handleFormSubmit (e) {
     e.preventDefault();
   }
 
   function onChange (e) {
+    setFormData (
+      reducer (formData, {
+        type: UPDATE,
+        data: {[e.target.name]: e.target.value}
+      }
+    ));
+  }
+
+  function reducer (state, action) {
+    switch (action.type) {
+      case UPDATE: {
+        return {...state, ...action.data};
+      };
+      default:
+        return state;
+    }
   }
 
   function renderInput (input) {
-
     if (isSimpleInput(input)) {
       return <InputSimple {...input} id={input.name} onChange={onChange} />;
-    };
+    }
     if (input.type === 'textarea') {
       return <TextArea {...input} id={input.name} onChange={onChange} />;
     }
-
   }
 
   function isSimpleInput (input) {
