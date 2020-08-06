@@ -4,7 +4,7 @@ import { InputSimple, FormLabel, InputSelect, TextArea } from '../../components'
 const UPDATE = 'UPDATE';
 
 function Form ({ data, formState }) {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(formState);
   const [isFormValid, setIsFormValid] = useState(false); 
 
   useEffect(() => {
