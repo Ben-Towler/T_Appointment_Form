@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-const API_BASE = 'https://clinia-coding-challenge.s3.ca-central-1.amazonaws.com/';
-
 import "../styles.scss";
-import { SelectService } from '../components';
+import { SelectService, Form } from '../components';
+
+const API_BASE = 'https://clinia-coding-challenge.s3.ca-central-1.amazonaws.com/';
 
 function Index () {
   const [selectedForm, setSelectedForm] = useState([]);
+  const [service, setService] = useState([]);
   const [forms, setForms] = useState([]);
   const [error, setError] = useState(false);
 
@@ -30,6 +31,7 @@ function Index () {
   }
 
   function onChange (e) {
+    setService(e.target.value);
     const form = getSelectedForm(e.target.value);
     setSelectedForm( form );
   }
@@ -40,7 +42,7 @@ function Index () {
       return form.services.includes(service)
     });
 
-    if (form.length) return form;
+    if (form.length) return form[0];
     return defaultForm;
   }
   
@@ -49,8 +51,12 @@ function Index () {
       <Head>
         <title>Appointment Form</title>
       </Head>
-      <div style={{ textAlign: "center" }} className="example">
+      <div className="wrapper">
         <SelectService onChange={ onChange } />
+        {service.length ?
+          <Form data={ selectedForm } service={ service } />
+          : null
+        }
       </div>
     </div>
   );
