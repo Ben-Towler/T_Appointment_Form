@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 
 import "../styles.scss";
 import { SelectService } from '../components';
 
-export default class Index extends React.Component {
-  render() {
-    return (
-      <div>
-        <Head>
-          <title>Appointment Form</title>
-        </Head>
-        <div style={{ textAlign: "center" }} className="example">
-          <SelectService />
-        </div>
-      </div>
-    );
+function Index () {
+  const [selectedService, setSelectedService] = useState([]);
+
+  function onChange (e) {
+    setSelectedService(e.target.value);
   }
+  
+  return (
+    <div>
+      <Head>
+        <title>Appointment Form</title>
+      </Head>
+      <div style={{ textAlign: "center" }} className="example">
+        <SelectService onChange={ onChange } />
+      </div>
+    </div>
+  );
 }
+
+export default Index;
