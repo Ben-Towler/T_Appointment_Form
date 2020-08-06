@@ -26,7 +26,7 @@ function SelectService ({ onChange }) {
   }
 
   return (
-    <div class="appointment appointment--type">
+    <div className="appointment appointment--type">
       <form className="form form--service">
         <FormLabel htmlFor="form_service">Choose a Service</FormLabel>
         <select 

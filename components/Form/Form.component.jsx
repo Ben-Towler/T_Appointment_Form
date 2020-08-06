@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { InputSimple, FormLabel, TextArea } from '../../components';
+import { InputSimple, FormLabel, InputSelect, TextArea } from '../../components';
 
 const UPDATE = 'UPDATE';
 
@@ -28,11 +28,14 @@ function Form ({ data, service }) {
     e.target.reset();
   }
 
-  function onChange (e) {
+  function onChange (e, name) {
+    const targetName = e.target.name;
+    if (name) targetName = name;
+    
     setFormData (
       reducer (formData, {
         type: UPDATE,
-        data: {[e.target.name]: e.target.value}
+        data: {[targetName]: e.target.value}
       }
     ));
   }
@@ -53,6 +56,9 @@ function Form ({ data, service }) {
     }
     if (input.type === 'textarea') {
       return <TextArea {...input} id={input.name} onChange={onChange} />;
+    }
+    if (input.type === 'dropdown') {
+      return <InputSelect {...input} options={input.options} id={input.name} onChange={onChange} />;
     }
   }
 
