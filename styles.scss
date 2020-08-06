@@ -132,6 +132,11 @@ fieldset {
   &:focus {
     outline: none;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
 
 .button--submit {
