@@ -3,20 +3,13 @@ import { InputSimple, FormLabel, InputSelect, TextArea } from '../../components'
 
 const UPDATE = 'UPDATE';
 
-function Form ({ data, service }) {
-  const [formData, setFormData] = useState(setDefaultState);
+function Form ({ data, formState }) {
+  const [formData, setFormData] = useState({});
   const [isFormValid, setIsFormValid] = useState(false); 
 
   useEffect(() => {
     setIsFormValid(isValid(formData));
   }, [formData, isFormValid]);
-
-  function setDefaultState () {
-    const state = {};
-    data.fields.map(field => state[field.name] = '');
-    state.service = service;
-    return state;
-  }
 
   function isValid (fields) {
     return Object.keys(fields).every(key => fields[key].length);
@@ -25,13 +18,14 @@ function Form ({ data, service }) {
   function handleFormSubmit (e) {
     e.preventDefault();
     console.log('Form Data', formData);
+    setFormData(formState);
     e.target.reset();
   }
 
   function onChange (e, name) {
     const targetName = e.target.name;
     if (name) targetName = name;
-    
+
     setFormData (
       reducer (formData, {
         type: UPDATE,

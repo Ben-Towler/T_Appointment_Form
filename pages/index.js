@@ -7,6 +7,7 @@ const API_BASE = 'https://clinia-coding-challenge.s3.ca-central-1.amazonaws.com/
 
 function Index () {
   const [selectedForm, setSelectedForm] = useState([]);
+  const [defaultFormState, setDefaultFormState] = useState({});
   const [service, setService] = useState([]);
   const [forms, setForms] = useState([]);
   const [error, setError] = useState(false);
@@ -34,6 +35,14 @@ function Index () {
     setService(e.target.value);
     const form = getSelectedForm(e.target.value);
     setSelectedForm( form );
+    setDefaultFormState( setDefaultState(form.fields, e.target.value) );
+  }
+
+  function setDefaultState (data, service) {
+    const state = {};
+    data.map(field => state[field.name] = '');
+    state.service = service;
+    return state;
   }
 
   function getSelectedForm (service) {
@@ -54,7 +63,11 @@ function Index () {
       <div className="wrapper">
         <SelectService onChange={ onChange } />
         {service.length ?
-          <Form data={ selectedForm } service={ service } />
+          <Form 
+            data={ selectedForm } 
+            formState={ defaultFormState } 
+            service={ service } 
+          />
           : null
         }
       </div>
